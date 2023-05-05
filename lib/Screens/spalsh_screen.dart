@@ -11,18 +11,31 @@ class SplashScreen extends StatefulWidget{
   
   @override
   State<SplashScreen> createState() => SplashScreenState();
+  
 }
 
 
 class SplashScreenState extends State<SplashScreen> {
-  
- 
+//  final timer = Timer(
+//   const Duration(seconds: 3),
+//   () {
+//     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FirstScreen()));
+//   },
+// );
 
   @override
   Widget build(BuildContext context) {
-         Timer(const Duration(seconds: 4), () { 
-          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FirstScreen()));
-        });
+      WidgetsBinding.instance?.addPostFrameCallback((_) {
+      Timer(
+        const Duration(seconds: 3),
+        () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => FirstScreen()));
+        },
+      );
+    });
+        //  Timer(const Duration(seconds: 3), () { 
+        //   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FirstScreen()));
+        // });
     return Container(
       decoration:const BoxDecoration(
         gradient: LinearGradient(colors: [
@@ -59,7 +72,6 @@ class SplashScreenState extends State<SplashScreen> {
             ), child: Text('To ',
         style: GoogleFonts.aboreto(
               fontSize: 40,
-             // fontWeight: FontWeight.bold,
               color:const Color.fromARGB(255, 24, 16, 100)
         ),
         ),)

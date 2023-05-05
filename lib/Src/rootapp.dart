@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/Screens/first_screen.dart';
+import 'package:to_do_app/Screens/spalsh_screen.dart';
+import 'package:to_do_app/cubit/add_task_cubit.dart';
 import 'package:to_do_app/cubit/tasksmo_cubit.dart';
 
 class RootApp extends StatefulWidget {
@@ -18,9 +20,14 @@ class _RootAppState extends State<RootApp> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => TasksmoCubit(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: FirstScreen(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => AddTaskCubit()),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: FirstScreen(),
+        ),
       ),
     );
   }
